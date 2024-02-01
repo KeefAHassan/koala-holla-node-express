@@ -5,7 +5,7 @@ const pg = require('pg'); // importing pg
 // DB CONNECTION
 
 const pool = new pg.Pool({
-    database:  '<Koala>',  
+    database:  'Koala',  
     host:  'localhost',
     port: 5432
 })
@@ -17,7 +17,7 @@ koalaRouter.get('/', (req, res) => {
     //get koalas from the database
     //write a query a string
 
-    let queryText = `SELECT * FROM "Koala"`
+    let queryText = `SELECT * FROM "Koala";`;
 
     // need to send the query to the database
 
