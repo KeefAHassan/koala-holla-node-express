@@ -83,4 +83,12 @@ function renderKoalas(koalas) {
 function markReady(id) {
   console.log('in markReady function');
   // TODO: fill in this function
+  axios({
+    method: 'PUT',
+    url: `/koalas/mark/${id}`
+  }).then(response => {
+    getKoalas();
+  }).catch(error => {
+    console.log('PUT function failed', error);
+  });
 }
