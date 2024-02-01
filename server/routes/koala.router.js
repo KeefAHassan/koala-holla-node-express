@@ -6,6 +6,10 @@ const koalaRouter = express.Router();
 
 // GET
 
+koalaRouter.get('/', (req, res) => {
+    res.send(koalas);
+});
+
 
 // POST
 
