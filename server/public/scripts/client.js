@@ -26,14 +26,15 @@ getKoalas();
 
 function renderKoalas(koalas) {
   document.getElementById('viewKoalas').innerHTML = '';
-  for (let koala in koalas) {
+  for (let koala of koalas) {
+    console.log(koala);
     let ready = "Y";
     let transferButton = '';
     if (!koala.ready_to_transfer) {
       transferButton = `<button onclick="markReady(${koala.id})">Ready for Transfer</button>`;
       ready = "N";
-    }
-    document.getElementById('viewKoalas').innerHTML = `
+    } // end if
+    document.getElementById('viewKoalas').innerHTML += `
       <tr>
         <td>${koala.name}</td>
         <td>${koala.age}</td>
