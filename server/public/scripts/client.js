@@ -17,9 +17,41 @@ function getKoalas(){
 
 function saveKoala(){
   console.log( 'in saveKoala' );
-  // axios call to server to save koalas
-  // TODO: fill in this function
- 
+  // {name: ,
+  //  favorite_color
+  //  age:  ,
+  //  ready_to_transfer: ,
+  //  notes   ,
+  // }
+  let name = document.getElementById('nameIn').value;
+  let favorite_color = document.getElementById('colorIn').value;
+  let age = document.getElementById('ageIn').value;
+  let ready_to_transfer = document.getElementById('readyForTransferIn').value;
+  let notes = document.getElementById('notesIn').value;
+  let newKoala = {
+    name: name,
+    favorite_color: favorite_color,
+    age: age,
+    ready_to_transfer: ready_to_transfer,
+    notes: notes
+  };
+  // axios call to server to save koala
+  axios({
+    method: 'POST',
+    url: '/koalas',
+    data: newKoala
+  }).then(response => {
+    console.log('POST request successful', response);
+    getKoalas();
+    document.getElementById('nameIn').value = '';
+    document.getElementById('colorIn').value = '';
+    document.getElementById('ageIn').value = '';
+    document.getElementById('readyForTransferIn').value = '';
+    document.getElementById('notesIn').value = '';
+  }).catch(error => {
+    console.log('Error in POST request', error);
+  });
+
 }
 
 getKoalas();
@@ -51,4 +83,12 @@ function renderKoalas(koalas) {
 function markReady(id) {
   console.log('in markReady function');
   // TODO: fill in this function
+  axios({
+    method: 'PUT',
+    url: `/koalas/mark/${id}`
+  }).then(response => {
+    getKoalas();
+  }).catch(error => {
+    console.log('PUT function failed', error);
+  });
 }

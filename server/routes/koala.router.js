@@ -90,7 +90,7 @@ koalaRouter.put ('/mark/:id', (req, res) =>{
 
     const koalaId = req.params.id;
 
-    const sqlQuery = `UPDATE "koala" SET ready_for_transfer = true WHERE id=$1;`;
+    const sqlQuery = `UPDATE "Koala" SET ready_to_transfer = true WHERE id=$1;`;
 
     pool.query(sqlQuery, [koalaId])
         .then(
