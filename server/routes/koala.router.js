@@ -42,6 +42,8 @@ koalaRouter.get('/', (req, res) => {
 // POST
 
 koalaRouter.post('/', (req, res) => {
+
+
 //anticipating the req body will look like:
 
 // {name: ,
@@ -82,11 +84,32 @@ pool.query(queryText, [newKoala.name, newKoala.favorite_color, newKoala.age, new
 
 // PUT
 
-// koalaRouter.put ('/mark/:id', (req, res) =>
+koalaRouter.put ('/mark/:id', (req, res) =>{
 
-//     console.log('in the put on the server');
+    console.log('in the put on the server');
+
+    const koalaId = req.params.id;
+
+    const sqlQuery = `UPDATE "koala" SET ready_for_transfer = true WHERE id=$1;`;
+
+    pool.query(sqlQuery, [koalaId])
+        .then(
+            (result) => {
+                console.log(`Update query worked! ${sqlQuery}`, result);
+                res.sendStatus(200);
+            }
+        )
+        .catch (
+            (error) => {
+                console.log(`Update query failed, ${sqlQuery}`, error);
+                res.sendStatus(400);
+            }
+        );
+
+
+
     
-//     )
+})
 
 
 // DELETE
