@@ -27,7 +27,7 @@ getKoalas();
 function renderKoalas(koalas) {
   document.getElementById('viewKoalas').innerHTML = '';
   for (let koala of koalas) {
-    console.log(koala);
+    // console.log(koala);
     let ready = "Y";
     let transferButton = '';
     if (!koala.ready_to_transfer) {
