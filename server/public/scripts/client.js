@@ -75,6 +75,7 @@ function renderKoalas(koalas) {
         <td>${ready}</td>
         <td>${koala.notes}</td>
         <td>${transferButton}</td>
+        <td><button onclick="deleteKoala(${koala.id})">Delete</button></td>
       </tr>
     `;
   }
@@ -90,5 +91,14 @@ function markReady(id) {
     getKoalas();
   }).catch(error => {
     console.log('PUT function failed', error);
+  });
+}
+
+function deleteKoala(id) {
+  console.log('delete koala with id', id);
+  axios.delete(`/koalas/${id}`).then(response => {
+    getKoalas();
+  }).catch(error => {
+    console.log('DELETE function failed', error);
   });
 }
